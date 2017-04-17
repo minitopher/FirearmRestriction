@@ -6,6 +6,7 @@ public class Shooter : MonoBehaviour {
 
 
 	public GameObject projectile;
+    public static Player player;
 
 	private static float chargeShot = 0.0f;
 
@@ -30,7 +31,13 @@ public class Shooter : MonoBehaviour {
 	}
 
 	public static void Shoot_ball(ref Rigidbody2D rb){
-		rb.AddForce (new Vector2(-1,1) * chargeShot * 50);
-		//rb.AddForce (Transform.up * chargeShot);
-	}
+        if (player.facingRight == true) {
+            rb.AddForce(new Vector2(-1, 1) * chargeShot * 50 * -1);
+        }
+        else if (player.facingRight == false) {
+            rb.AddForce(new Vector2(-1, 1) * chargeShot * 50);
+        }
+
+        //rb.AddForce (Transform.up * chargeShot);
+    }
 }
